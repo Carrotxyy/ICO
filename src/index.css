@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.MuiExpansionPanel-root{
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Project_Summary_bg{
+  background: linear-gradient(to right, rgb(116, 235, 213), rgb(172, 182, 229));
+  min-height: 80px !important;
+}
+
+.Project_Summary_bg > *{
+  color: white;
+}
+.Project_Typography  form{
+  margin : 10px
+}
+.Project_Typography  form > *{
+  vertical-align : middle;
+  margin : 10px
+}
+      
