@@ -26,7 +26,6 @@ if( typeof window !== "undefined" && typeof window.web3 !== "undefined" ){
     const url = "http://localhost:8546"
     provider = new Web3.providers.HttpProvider(url)
 }
-    
 
 
 web3 = new Web3(provider)

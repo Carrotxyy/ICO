@@ -44,10 +44,10 @@ const LightTooltip = withStyles((theme) => ({
         this.state = {
           expanded : "",
           money : "",
-          open : false,
-          snack : false,
-          severity : 'success',
-          tips : ""
+          open : false, 
+          snack : false,  // 是否弹出提示框
+          severity : 'success', // 提示框状态 success-> 成功  error -> 失败
+          tips : "" // 提示信息内容
         }
 
       }

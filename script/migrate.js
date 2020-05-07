@@ -3,7 +3,9 @@ const fs = require("fs-extra")
 const path = require("path")
 
 
-const httpProvider = new Web3.providers.HttpProvider("https://api.infura.io/v1/jsonrpc/kovan")
+const httpProvider = new Web3.providers.HttpProvider("http://localhost:8546")
+
+
 
 const web3 = new Web3(httpProvider)
 
@@ -16,7 +18,7 @@ async function deployContract(){
     // 获取用户列表
     // const account = await web3.eth.getAccounts()
     // 构造交易对象
-    const tx = {from : "0xEa842AA190726e02dACf7E068Fc48178Dd67f91e",gas:2000000}
+    const tx = {from : "0x8899b9551dAe963883B8Fc71dA839415574C2a3D",gas:2000000}
     // 部署合约
     const instance = await new web3.eth.Contract( JSON.parse(interface) )
                                     .deploy({data:"0x" + bytecode})

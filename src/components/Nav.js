@@ -91,6 +91,7 @@ class Nav extends React.Component{
                         <Tab label="Welcome" id={"tab_Home" + 0} />
                         <Tab label="Project-List" id={"tab_About" + 1} />
                         <Tab label="Creact-Project" id={"tab_Product" + 2} />
+                        <Tab label="Cash-Flow" id={"tab_Product" + 3} />
                     </Tabs>
                 </AppBar>
                 <hr />
@@ -104,6 +105,9 @@ class Nav extends React.Component{
                 </TabPanle>
                 <TabPanle tab_index={this.state.tab_index} value={2} >
                     <CreactProject />
+                </TabPanle>
+                <TabPanle tab_index={this.state.tab_index} value={3} >
+                    查看投资资金流动情况！
                 </TabPanle>
             </div>
         )

@@ -18,6 +18,9 @@ import TableRow from '@material-ui/core/TableRow';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 const StyledTableCell = withStyles((theme) => ({
     head: {
       backgroundColor: theme.palette.common.black,
@@ -60,6 +63,12 @@ function CreactProject(props){
     const [min,setMin] = React.useState("")
     const [max,setMax] = React.useState("")
     const [total,setTotal] = React.useState("")
+    
+    const [snack,setSnack] = React.useState({
+        open : false,
+        severity : "success",
+        tips : ""
+    })
     /**
      * 
         describe,
@@ -68,8 +77,33 @@ function CreactProject(props){
         total,
      */
     
+    const handleClose = ()=>{
+        setSnack({
+            ...setSnack,
+            open : false
+        })
+    }
+
+     // 验证数据是否正确填写
+    const verify = ()=>{
+        if(des === "" || isNaN(parseInt(min)) || isNaN(parseInt(max)) || isNaN(parseInt(total)) ){
+            setSnack({
+                open : true,
+                severity : "error",
+                tips : "请正确填写"
+            })
+            return false
+        }
+        return true
+    }
+    
      // 发起募资
     const initiate = async ()=>{
+
+        if(!verify){
+            return
+        }
+        
         const addresses = await web3.eth.getAccounts()
         const account = addresses[0]
         const tx = {
@@ -79,6 +113,11 @@ function CreactProject(props){
         const pAddress = await projectList.methods.createProject(des,web3.utils.toWei(min),web3.utils.toWei(max),web3.utils.toWei(total))
                                             .send(tx)
         console.log(pAddress)
+        setSnack({
+            open : true,
+            severity : "success",
+            tips : "创建投资项目成功"
+        })
     }
 
     const desChange = (event)=>{
@@ -176,6 +215,12 @@ function CreactProject(props){
                     </Grid>
                 </Grid>
             </Container>
+            
+            <Snackbar anchorOrigin={{vertical:"top",horizontal:"center"}} open={snack.open} autoHideDuration={3000} onClose={handleClose}>
+                <Alert   style={{width:"200px"}} elevation={12} variant="filled" onClose={handleClose} severity={snack.severity}>
+                    {snack.tips}
+                </Alert>
+            </Snackbar>
         </div>
     )
 
